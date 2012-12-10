@@ -42,7 +42,7 @@ import org.apache.http.auth.params.AuthPNames;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.params.AuthPolicy;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
+import org.apache.http.impl.conn.PoolingClientConnectionManager;
 import org.apache.http.util.EntityUtils;
 import org.xml.sax.SAXException;
 
@@ -65,7 +65,7 @@ public class ArtifactResolverRemote extends AbstractArtifactResolver {
 
     public ArtifactResolverRemote(List<String> repositories, String username, String password) {
         this.repositories = Collections.unmodifiableList(repositories);
-        ThreadSafeClientConnManager connectionManager = new ThreadSafeClientConnManager();
+        PoolingClientConnectionManager connectionManager = new PoolingClientConnectionManager();
         connectionManager.setMaxTotal(MAX_HTTP_THREADS);
         connectionManager.setDefaultMaxPerRoute(MAX_HTTP_THREADS);
         httpclient = new DefaultHttpClient(connectionManager);
