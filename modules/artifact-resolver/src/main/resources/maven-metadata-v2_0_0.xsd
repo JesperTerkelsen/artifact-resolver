@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified"
+	targetNamespace="http://maven.apache.org/maven-metadata/2.0.0"
+	xmlns="http://maven.apache.org/maven-metadata/2.0.0">
+    <!-- This xsd is a guess and needs refining and testing -->
+    <xs:element name="metadata">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="groupId" minOccurs="1" maxOccurs="1"/>
+                <xs:element name="artifactId" minOccurs="1" maxOccurs="1" type="xs:string"/>
+                <xs:element name="version" minOccurs="0" maxOccurs="1" type="xs:string"/>
+                <xs:element name="versioning" minOccurs="0" maxOccurs="1" type="Versioning"/>
+            </xs:all>
+        </xs:complexType>        
+    </xs:element>
+    <xs:complexType name="Versioning">
+        <xs:sequence>
+            <xs:element name="latest" minOccurs="0" maxOccurs="1" type="xs:string"/>
+            <xs:element name="snapshot" minOccurs="0" maxOccurs="1" type="Snapshot"/>            
+            <xs:element name="versions" minOccurs="0" maxOccurs="1"
+				type="Versions">
+            </xs:element>
+            <xs:element name="lastUpdated" minOccurs="0" maxOccurs="1" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Versions">
+        <xs:sequence>
+            <xs:element name="version" minOccurs="1" maxOccurs="unbounded" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Snapshot">
+        <xs:sequence>
+            <xs:element name="timestamp" minOccurs="0" maxOccurs="1" type="xs:string"/>
+            <xs:element name="buildNumber" minOccurs="0" maxOccurs="1" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>    
+</xs:schema>
