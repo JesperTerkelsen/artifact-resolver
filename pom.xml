@@ -5,7 +5,7 @@
     <artifactId>master</artifactId>
     <version>1.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Artifact resolver - Master</name>
+    <name>Artifact Resolver - Master</name>
     <description>Master project for the artifact resolver project</description>
     
     <modules>
