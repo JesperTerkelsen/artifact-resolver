@@ -54,7 +54,17 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <scope>test</scope>
-        </dependency>          
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-compress</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+          <groupId>org.codehaus.plexus</groupId>
+          <artifactId>plexus-utils</artifactId>
+          <version>3.0</version>
+        </dependency>        
     </dependencies>
 
     <build>
