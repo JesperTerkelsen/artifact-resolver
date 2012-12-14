@@ -38,16 +38,20 @@ public class TarUtils {
     }
 
     public void unzipArchive(File sourceFile, File destDir) throws FileNotFoundException, IOException {
+        unzipArchive(sourceFile, destDir, true);
+    }
+
+    public void unzipArchive(File sourceFile, File destDir, boolean preservePermissions) throws FileNotFoundException, IOException {
         FileInputStream fileInputStream = new FileInputStream(sourceFile);
         GZIPInputStream gzipInputStream = new GZIPInputStream(fileInputStream);
         TarArchiveInputStream stream = new TarArchiveInputStream(gzipInputStream);
         TarArchiveEntry entry = stream.getNextTarEntry();
         while (entry != null) {
-            // System.out.println(entry.getName() + " " + entry.isDirectory());
-            if (entry.isDirectory()){
+            System.out.println(entry.getName() + " " + entry.isDirectory());
+            if (entry.isDirectory()) {
                 new File(destDir, entry.getName()).mkdirs();
             }
-            if (entry.isFile()){
+            if (entry.isFile()) {
                 File outFile = new File(destDir, entry.getName());
                 // Make any missing directories
                 outFile.getParentFile().mkdirs();
@@ -55,17 +59,29 @@ public class TarUtils {
                 long size = entry.getSize();
                 byte[] buffer = new byte[1024];
                 boolean done = false;
-                while (!done){
+                while (!done) {
                     int len = stream.read(buffer, 0, buffer.length);
-                    if (len == -1){
+                    if (len == -1) {
                         done = true;
-                    }
-                    else {
+                    } else {
                         out.write(buffer, 0, len);
                     }
                 }
                 out.flush();
                 out.close();
+                if (preservePermissions) {
+                    PosixFileModeParser parser = new PosixFileModeParser(entry.getMode());
+                    System.out.println(parser.getPrintedPermissions());
+                    outFile.setExecutable(parser.isOtherExecute(), false);
+                    outFile.setExecutable(parser.isUserExecute(), true);
+                    
+                    outFile.setReadable(parser.isOtherRead(), false);
+                    outFile.setReadable(parser.isUserRead(), true);
+                    
+                    outFile.setWritable(parser.isOtherWrite(), false);
+                    outFile.setWritable(parser.isUserWrite(), true);
+                    
+                }
             }
 
             // Read next

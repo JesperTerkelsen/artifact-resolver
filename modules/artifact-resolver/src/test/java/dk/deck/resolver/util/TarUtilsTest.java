@@ -17,7 +17,7 @@ import org.junit.Ignore;
  *
  * @author jester
  */
-@Ignore("Integration test")
+// @Ignore("Integration test")
 public class TarUtilsTest {
     
     public TarUtilsTest() {
@@ -39,18 +39,18 @@ public class TarUtilsTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of unzipArchive method, of class TarUtils.
-     */
-    @Test
-    public void testUnzipArchive1() throws Exception {
-        System.out.println("unzipArchive1");
-        File sourceFile = new File("/Users/jester/work/solrstaging-agent/modules/service/target/apache-solr-4.0.0.tgz");
-        
-        File destDir = new File("target");
-        TarUtils instance = new TarUtils();
-        instance.unzipArchive(sourceFile, destDir);      
-    }
+//    /**
+//     * Test of unzipArchive method, of class TarUtils.
+//     */
+//    @Test
+//    public void testUnzipArchive1() throws Exception {
+//        System.out.println("unzipArchive1");
+//        File sourceFile = new File("/Users/jester/work/solrstaging-agent/modules/service/target/apache-solr-4.0.0.tgz");
+//        
+//        File destDir = new File("target");
+//        TarUtils instance = new TarUtils();
+//        instance.unzipArchive(sourceFile, destDir);      
+//    }
     
     /**
      * Test of unzipArchive method, of class TarUtils.
@@ -58,7 +58,7 @@ public class TarUtilsTest {
     @Test
     public void testUnzipArchive2() throws Exception {
         System.out.println("unzipArchive2");
-        File sourceFile = new File("/Users/jester/work/solrstaging-agent/modules/service/target/apache-tomcat-7.0.33.tar.gz");
+        File sourceFile = new File("/Users/jester/Downloads/apache-tomcat-7.0.33.tar.gz");
         
         File destDir = new File("target");
         TarUtils instance = new TarUtils();
