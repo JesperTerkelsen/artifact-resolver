@@ -47,7 +47,7 @@ public class TarUtils {
         TarArchiveInputStream stream = new TarArchiveInputStream(gzipInputStream);
         TarArchiveEntry entry = stream.getNextTarEntry();
         while (entry != null) {
-            System.out.println(entry.getName() + " " + entry.isDirectory());
+            // System.out.println(entry.getName() + " " + entry.isDirectory());
             if (entry.isDirectory()) {
                 new File(destDir, entry.getName()).mkdirs();
             }
@@ -71,7 +71,7 @@ public class TarUtils {
                 out.close();
                 if (preservePermissions) {
                     PosixFileModeParser parser = new PosixFileModeParser(entry.getMode());
-                    System.out.println(parser.getPrintedPermissions());
+                    // System.out.println(parser.getPrintedPermissions());
                     outFile.setExecutable(parser.isOtherExecute(), false);
                     outFile.setExecutable(parser.isUserExecute(), true);
                     
