@@ -6,9 +6,9 @@ This is usefull inside installers that will rollout some released artifact to mu
 
 # Features
 
-Currently supports maven 2 repositories, both with snapshots and releases. 
-You can also get a list of versions avalible for a artifact.
-Artifact Resolver is reading the metadata.xml files in the maven repository for snapshot and listing support.
+* Currently supports maven 2 repositories, both with snapshots and releases. 
+* You can also get a list of versions avalible for a artifact.
+* Artifact Resolver is reading the metadata.xml files in the maven repository for snapshot and listing support.
 
 ## Download and use
 Use maven
